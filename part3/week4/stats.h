@@ -4,30 +4,24 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <string>
 
 #include "http_request.h"
-
-using namespace std;
 
 class Stats {
 public:
     Stats();
-    void AddMethod(string_view method);
-    void AddUri(string_view uri);
-    const map<string_view, int>& GetMethodStats() const;
-    const map<string_view, int>& GetUriStats() const;
+    void AddMethod(std::string_view method);
+    void AddUri(std::string_view uri);
+    const std::map<std::string_view, int>& GetMethodStats() const;
+    const std::map<std::string_view, int>& GetUriStats() const;
 
 private:
     void initMethodStats();
     void initUriStats();
 
-    const set<string> SupportedMethods = { "GET", "POST", "PUT", "DELETE" };
-    const set<string> SupportedUri = { "/", "/order", "/product", "/basket", "/help" };
-    const string UnknownMethod = "UNKNOWN";
-    const string UnknownUri = "unknown";
-
-    map<string_view, int> methodStats, uriStats;
+    std::map<std::string_view, int> methodStats, uriStats;
 };
 
-vector<string_view> SplitIntoWords(string_view line);
-HttpRequest ParseRequest(string_view line);
+std::vector<std::string_view> SplitIntoWords(std::string_view line);
+HttpRequest ParseRequest(std::string_view line);

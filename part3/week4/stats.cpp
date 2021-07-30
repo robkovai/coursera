@@ -1,5 +1,12 @@
 #include "stats.h"
 
+using namespace std;
+
+const std::set<std::string> SupportedMethods = { "GET", "POST", "PUT", "DELETE" };
+const std::set<std::string> SupportedUri = { "/", "/order", "/product", "/basket", "/help" };
+const std::string UnknownMethod = "UNKNOWN";
+const std::string UnknownUri = "unknown";
+
 Stats::Stats() {
     initMethodStats();
     initUriStats();
